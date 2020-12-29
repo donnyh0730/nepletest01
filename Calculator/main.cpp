@@ -4,7 +4,7 @@
 #include <stack>
 #include <string>
 using namespace std;
-//Input : 15/6+(31-6)*4 숫자마다 공백 삽입이 필요함. 15.24/6.13+(31.2-6.5)*4.8
+//Input : 15/6+(31-6)*4 숫자마다 공백 삽입이 필요함. 15.2/6.1+(31.2-6.5)*4.8
 //Output: 102.5000
 
 string Expr;
@@ -39,31 +39,52 @@ string toPostFix(const string &Expr)
 	int i = 0;
 	while (i < Expr.size())
 	{
-		if (Expr[i] == ' ')
+		char cur_ch = Expr[i];
+		if (cur_ch == ' ')
 		{
-			res.push_back(Expr[i]);
+			//res.push_back(cur_ch);
 			i++;
 			continue;
 		}
 		if (!isOp(Expr[i]))//피연산자인경우
 		{
 			string str;
-			while (Expr[i] != ' ')
+			while (i < Expr.size() && Expr[i] != ' ')
 			{
 				str.push_back(Expr[i]);
 				i++;
 			}
 			res.append(str);
+			res.push_back(' ');
+		}
+		else if (cur_ch == '(')
+		{
+			opstack.push(cur_ch);
+		}
+		else if (cur_ch == ')')
+		{
+			while (!opstack.empty())
+			{
+				char op = opstack.top();
+				opstack.pop();
+				if (op == '(')break;
+				else
+				{
+					res.push_back(op);
+					res.push_back(' ');
+				}
+				
+			}
 		}
 		else
 		{
-			if (Expr[i] == '+' || Expr[i] == '-' || Expr[i] == '*' || Expr[i] == '/')//연산자인 경우
+			if (cur_ch == '+' || cur_ch == '-' || cur_ch == '*' || cur_ch == '/')//연산자인 경우
 			{
 				while (!opstack.empty())
 				{
 					char op = opstack.top();
 					//현재 연산자보다 우선순위가 높거나 같으면 모두 출력한다.
-					if (Getpriority(Expr[i]) <= Getpriority(op))
+					if (Getpriority(cur_ch) <= Getpriority(op))
 					{
 						res.push_back(op);//우선순위가 높은 연산자가 먼저 res에 적힌다.
 						res.push_back(' ');
@@ -71,27 +92,18 @@ string toPostFix(const string &Expr)
 					}
 					else break;
 				}
+
 				opstack.push(Expr[i]);				
 			}
-			else if (Expr[i] == '(')
-			{
-				res.push_back(Expr[i]);
-			}
-			else if (Expr[i] == ')')
-			{
-				while (opstack.size())
-				{
-					char op = opstack.top();
-					if (op == '(')break;
-					else
-					{
-						res.push_back(op);						
-					}
-					opstack.pop();
-				}
-			}
+			
 		}
 		i++;
+	}
+	while (!opstack.empty())
+	{
+		res.push_back(opstack.top());
+		res.push_back(' ');
+		opstack.pop();
 	}
 	return res;
 }

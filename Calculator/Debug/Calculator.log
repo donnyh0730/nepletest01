@@ -1,5 +1,6 @@
 ﻿  main.cpp
-c:\users\dongwoong\documents\neopleclient_01\calculator\calculator\main.cpp(40): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\dongwoong\documents\neopleclient_01\calculator\calculator\main.cpp(102): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-c:\users\dongwoong\documents\neopleclient_01\calculator\calculator\main.cpp(108): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-  Calculator.vcxproj -> C:\Users\DongWoong\Documents\NeopleClient_01\Calculator\Debug\Calculator.exe
+c:\users\donny\documents\calculator\calculator\main.cpp(40): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\donny\documents\calculator\calculator\main.cpp(52): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\donny\documents\calculator\calculator\main.cpp(114): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\donny\documents\calculator\calculator\main.cpp(120): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  Calculator.vcxproj -> C:\Users\donny\Documents\Calculator\Debug\Calculator.exe
